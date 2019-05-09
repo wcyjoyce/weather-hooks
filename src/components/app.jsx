@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { Component, useState, useEffect } from "react";
 
+import useLocation from "./UseLocation.jsx";
 import Weather from "./weather.jsx";
 import Spinner from "./spinner.jsx";
 
 // Functional-based component
 const App = () => {
-  const [latitude, setLatitude] = useState(null); // default value: lat === null
-  const [longitude, setLongitude] = useState(null); // default value: lat === null
-  const [errorMessage, setErrorMessage] = useState(""); // default value: errorMessage === ""
+  const [latitude, longitude, errorMessage] = useLocation();
+  // const [latitude, setLatitude] = useState(null); // default value: lat === null
+  // const [longitude, setLongitude] = useState(null); // default value: lat === null
+  // const [errorMessage, setErrorMessage] = useState(""); // default value: errorMessage === ""
 
-  useEffect(() => {
-    window.navigator.geolocation.getCurrentPosition(
-      position => { setLatitude(position.coords.latitude), setLongitude(position.coords.longitude) } ,
-      error => setErrorMessage(error.message)
-    );
-  }, []);
+  // useEffect(() => {
+  //   window.navigator.geolocation.getCurrentPosition(
+  //     position => { setLatitude(position.coords.latitude), setLongitude(position.coords.longitude) } ,
+  //     error => setErrorMessage(error.message)
+  //   );
+  // }, []);
 
   let content;
   if (errorMessage) {
